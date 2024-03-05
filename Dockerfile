@@ -5,7 +5,7 @@ WORKDIR /app
 COPY src/ /app/src
 
 RUN mvn versions:set -DnewVersion=$VERSION -DgenerateBackupPoms=false
-# Package project
+# Package project1
 RUN mvn -B -DskipTests package
 
 FROM sapmachine:21-jre-headless-ubuntu
