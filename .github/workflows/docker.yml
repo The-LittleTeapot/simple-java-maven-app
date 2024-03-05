@@ -18,7 +18,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: docker push itaykalininsky/java_app
+          tags: itaykalininsky/java_app
 
   deploy:
     needs: build
@@ -30,4 +30,4 @@ jobs:
 
       - name: Deploy locally
         run: |
-          docker run -d -p 8080:8080 docker push itaykalininsky/java_app
+          docker run -d -p 8080:8080 itaykalininsky/java_app
