@@ -24,8 +24,7 @@ jobs:
           context: .
           push: true
           tags: itaykalininsky/java_app
-        env:
-          DOCKER_AUTH_CONFIG: ${{ secrets.DOCKER_AUTH_CONFIG }}
+        
 
   deploy:
     needs: build
