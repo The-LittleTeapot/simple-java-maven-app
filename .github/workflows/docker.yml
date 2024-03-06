@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Get the next
-        uses: reecetech/ersion-increment@2023.9.3
+        uses: reecetech/version-increment@2023.9.3
         id: version
         with:
           scheme: semver
