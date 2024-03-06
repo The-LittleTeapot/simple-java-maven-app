@@ -24,6 +24,7 @@ jobs:
         id: version
         with:
           scheme: semver
+          set: major = 1
           increment: patch
       
       - name: Build and push Docker image
@@ -31,5 +32,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/java_app:1.0.${{ steps.version.outputs.version }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/java_app:${{ steps.version.outputs.version }}
         
