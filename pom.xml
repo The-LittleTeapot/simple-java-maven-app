@@ -67,6 +67,22 @@
           </execution>
         </executions>
       </plugin>
+      <!-- OWASP Decpendecy check maven -->
+      <plugin>
+ 	      <groupId>org.owasp</groupId>
+ 	      <artifactId>dependency-check-maven</artifactId>
+ 	      <version>7.4.2</version> <!-- Replace with the latest version -->
+ 	      <executions>
+   	      <execution>
+     	      <goals>
+       	      <goal>check</goal>
+     	      </goals>
+            <configuration>
+              <failBuildOnCVSS>7</failBuildOnCVSS>
+            </configuration>  
+   	      </execution>
+ 	      </executions>
+      </plugin>
     </plugins>
   </build>
 </project>
