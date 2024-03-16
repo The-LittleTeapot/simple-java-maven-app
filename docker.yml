@@ -11,15 +11,14 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Set up JDK 11
+      - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          java-version: '11'
-          distribution: 'temurin'
-          cache: maven
-
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '21'
+          
       - name: Run Dependency Check
         run: mvn dependency-check:check
 
