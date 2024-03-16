@@ -37,6 +37,6 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/java_app:1.0.${{ github.run_number }}
           build-args:
             "VERSION=1.0.${{github.run_number}}"
-# com
+
 
         
