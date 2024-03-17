@@ -43,6 +43,8 @@ jobs:
       
       - name: Scan Docker Image wih Snyk
         run: snyk container test ${{ secrets.DOCKER_USERNAME }}/java_app:1.0.${{ github.run_number }}
-
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+# comment
 
         
