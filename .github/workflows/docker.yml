@@ -77,5 +77,16 @@ jobs:
           # Example: myPassw0rdChangeMeReplaceMe
           private-key-passphrase: ${{ secrets.NOTARY_PASSPHRASE }}
 
+      - name: Verify and deploy image
+        run: |
+          if docker trust inspect --pretty ${{ secrets.DOCKER_USERNAME }}/java_app:1.0.${{ github.run_number }} \
+          | grep -q 'Signatures: \[\]'; then \
+            echo "Image is not signed. Deployment aborted."
+            exit 1
+          else
+            echo "Image is signed. Proceeding with deployment..."
+            # Your deployment commands here
+          fi
+
 # comment8
         
