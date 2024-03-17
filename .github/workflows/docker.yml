@@ -44,11 +44,11 @@ jobs:
           build-args:
             "VERSION=1.0.${{github.run_number}}"
 
-      - name: Sign and push Docker image with Docker Content Trust
+      - name: Load Notary Delegation Key and Push Docker Image
         run: |
-          docker trust key load ${{ secrets.NOTARY_PRIVATE_KEY}} --passphrase ${{ secrets.NOTARY_PASSPHRASE }}
+          echo "${{ secrets.DOCKER_DELEGATION_KEY }}" > delegation.key
+          echo "${{ secrets.DOCKER_DELEGATION_PASSPHRASE }}" | docker trust key load delegation.key --passphrase-stdin
           docker push ${{ secrets.DOCKER_USERNAME }}/java_app:1.0.${{ github.run_number }}
         env:
-          DELEGATION_KEY: ${{ secrets.DOCKER_DELEGATION_KEY }}
-          DELEGATION_KEY_PASSPHRASE: ${{ secrets.DOCKER_DELEGATION_PASSPHRASE }}
           DOCKER_CONTENT_TRUST: 1
+
