@@ -29,11 +29,11 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      - name: Import GPG key
-        uses: crazy-max/ghaction-import-gpg@v5
-        with:
-          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          passphrase: ${{ secrets.GPG_PASSPHRASE }}
+      # - name: Import GPG key
+      #   uses: crazy-max/ghaction-import-gpg@v5
+      #   with:
+      #     gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+      #     passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
       - name: Build Docker image
         uses: docker/build-push-action@v5
@@ -47,7 +47,7 @@ jobs:
       - name: Load Notary Delegation Key and Push Docker Image
         run: |
           echo "${{ secrets.DOCKER_DELEGATION_KEY }}" > delegation.key
-          echo "${{ secrets.DOCKER_DELEGATION_PASSPHRASE }}" | docker trust key load delegation.key --passphrase-stdin
+          docker trust key load delegation.key --passphrase ${{ secrets.NOTARY_PASSPHRASE }}
           docker push ${{ secrets.DOCKER_USERNAME }}/java_app:1.0.${{ github.run_number }}
         env:
           DOCKER_CONTENT_TRUST: 1
