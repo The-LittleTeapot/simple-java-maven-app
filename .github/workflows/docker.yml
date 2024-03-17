@@ -50,7 +50,7 @@ jobs:
       - name: Static Testing
         run: |
           mvn clean install sonar:sonar \
-          -Dsonar.projectKey=The-LittleTeapot/simple-java-maven-app \
+          -Dsonar.projectKey=simple-java-maven-app \
           -Dsonar.organization=itayk \
           -Dsonar.host.url=https://sonarcloud.io/ \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
