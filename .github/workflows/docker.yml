@@ -46,7 +46,9 @@ jobs:
 
       - name: Sign and push Docker image with Docker Content Trust
         run: |
-          export DOCKER_CONTENT_TRUST=1
+          docker trust key load ${{ secrets.NOTARY_PRIVATE_KEY}} --passphrase ${{ secrets.NOTARY_PASSPHRASE }}
           docker push ${{ secrets.DOCKER_USERNAME }}/java_app:1.0.${{ github.run_number }}
         env:
+          DELEGATION_KEY: ${{ secrets.DOCKER_DELEGATION_KEY }}
+          DELEGATION_KEY_PASSPHRASE: ${{ secrets.DOCKER_DELEGATION_PASSPHRASE }}
           DOCKER_CONTENT_TRUST: 1
