@@ -48,15 +48,15 @@ jobs:
           passphrase: ${{ secrets.GPG_PASSPHRASE }} 
           
 
-      - name: Sign and push Docker image with Docker Content Trust
-        run: |
-          export DOCKER_CONTENT_TRUST=1
-          docker pushtrust sign ${{ secrets.DOCKER_USERNAME }}/java_app:1.0.${{ github.run_number }}
+      # - name: Sign and push Docker image with Docker Content Trust
+      #   run: |
+      #     export DOCKER_CONTENT_TRUST=1
+      #     docker pushtrust sign ${{ secrets.DOCKER_USERNAME }}/java_app:1.0.${{ github.run_number }}
 
 
-        env:
-          DOCKER_CONTENT_TRUST: 1
-        continue-on-error: true
+        # env:
+        #   DOCKER_CONTENT_TRUST: 1
+        # continue-on-error: true
 # comment5
 
         
