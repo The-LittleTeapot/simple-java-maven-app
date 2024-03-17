@@ -58,6 +58,7 @@ jobs:
 
       - name: Sign and push docker image
         uses: sudo-bot/action-docker-sign@latest
+        with:
           image-ref: ${{ secrets.DOCKER_USERNAME }}/java_app:1.0.${{ github.run_number }}
           # Example: 51f9a39f3db4ddaaf9174fca69f41fb01a04a4dfb5125ef115feecb93d19efa6
           private-key-id: "${{ secrets.NOTARY_PRIVATE_KEY_ID }}"
