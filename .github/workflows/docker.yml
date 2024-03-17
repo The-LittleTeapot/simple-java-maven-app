@@ -46,8 +46,8 @@ jobs:
 
       - name: Load Notary Delegation Key and Push Docker Image
         run: |
-          echo "${{ secrets.DOCKER_DELEGATION_KEY }}" > delegation.key
-          docker trust key load delegation.key --passphrase ${{ secrets.NOTARY_PASSPHRASE }}
+          echo "${{ secrets.NOTARY_PRIVATE_KEY }}" > delegation.key
+          docker trust key load --name itayk delegation.key --passphrase ${{ secrets.NOTARY_PASSPHRASE }}
           docker push ${{ secrets.DOCKER_USERNAME }}/java_app:1.0.${{ github.run_number }}
         env:
           DOCKER_CONTENT_TRUST: 1
